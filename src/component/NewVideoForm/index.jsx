@@ -34,7 +34,12 @@ function NewVideoForm() {
 
         <div>
           <Input title="Título" id="title" />
-          <Input title="Categoria" id="category" />
+          <Input
+            title="Categoria"
+            id="category"
+            type="select"
+            selectValues={["Backend", "Frontend", "Mobile"]}
+          />
           <Input title="Imagem" id="image" />
           <Input title="Vídeo" id="video" />
           <Input title="Descrição" id="description" type="area" />

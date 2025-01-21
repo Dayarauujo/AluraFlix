@@ -40,6 +40,8 @@ function EditVideo({ closeModal, video }) {
             title="Categoria"
             id="category"
             defaultValue={video.category}
+            type="select"
+            selectValues={["Backend", "Frontend", "Mobile"]}
           />
           <Input title="Imagem" id="image" defaultValue={video.image} />
           <Input title="Vídeo" id="video" defaultValue={video.video} />

@@ -11,6 +11,10 @@ export const EditVideoContainer = styled.div`
   z-index: 2;
   position: relative;
 
+  @media (max-width: 1000px) {
+    padding: 50px 20px;
+  }
+
   h1,
   h2 {
     text-align: center;
@@ -40,7 +44,8 @@ export const EditVideoContainer = styled.div`
   }
 
   form input,
-  textarea {
+  textarea,
+  select {
     border: 2px solid #2271d1;
   }
 

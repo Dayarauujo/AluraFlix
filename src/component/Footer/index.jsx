@@ -1,12 +1,14 @@
 import React from "react";
-import "./Footer.css";
+import { FooterContainer, Logo } from "./styled";
+import logo from "../../assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="logo">Alura Flix</div>
-      <p>© 2025 Alura Flix. Todos os direitos reservados.</p>
-    </footer>
+    <FooterContainer>
+      <Logo src={logo} alt="Alura Flix Logo" />
+
+      <p>Desenvolvido por: Dayane Araujo</p>
+    </FooterContainer>
   );
 };
 

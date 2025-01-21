@@ -11,7 +11,8 @@ export const InputContainer = styled.div`
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     background-color: transparent;
     border: 2px solid rgb(63, 63, 63);
     border-radius: 10px;
@@ -22,5 +23,9 @@ export const InputContainer = styled.div`
 
   :user-invalid {
     border: 2px solid red;
+  }
+
+  option {
+    color: black;
   }
 `;

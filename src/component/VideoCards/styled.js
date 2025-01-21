@@ -6,11 +6,15 @@ export const VideoCard = styled.div`
   border: 4px solid white;
   border-radius: 8px 8px 20px 20px;
   box-shadow: 0px 0px 4px 2px ${({ $color }) => $color ?? "#6bd1ff"};
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const VideoThumbnail = styled.a`
   img {
-    width: 432px;
+    width: 100%;
     height: 260px;
     object-fit: cover;
     border-bottom: 4px solid white;
