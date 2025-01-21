@@ -1,21 +1,19 @@
+import YouTube from "react-youtube";
+
 import {
   BannerBackground,
   BannerContainer,
-  BannerImage,
+  BannerVideo,
   BannerInfo,
 } from "./styled";
-
-const COLORS = {
-  frontend: "#6bd1ff",
-  backend: "#00C86F",
-  mobile: "#FFBA05",
-};
+import { TECH_COLORS } from "../../utils/colors";
 
 const Banner = ({ video }) => {
+  console.log(video);
   return (
-    <BannerContainer $color={COLORS[video.category.toLowerCase()]}>
+    <BannerContainer $color={TECH_COLORS[video.category.toLowerCase()]}>
       <BannerBackground src={video.image} />
-      <BannerInfo $color={COLORS[video.category.toLowerCase()]}>
+      <BannerInfo $color={TECH_COLORS[video.category.toLowerCase()]}>
         <span>
           <h1>{video.title}</h1>
         </span>
@@ -23,11 +21,9 @@ const Banner = ({ video }) => {
         <p>{video.description}</p>
       </BannerInfo>
 
-      <BannerImage
-        src={video.image}
-        alt="Vídeo em destaque"
-        $color={COLORS[video.category.toLowerCase()]}
-      />
+      <BannerVideo $color={TECH_COLORS[video.category.toLowerCase()]}>
+        <YouTube videoId={video.video.match(/v=([^&]+)/)[1]} />
+      </BannerVideo>
     </BannerContainer>
   );
 };

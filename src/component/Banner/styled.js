@@ -63,10 +63,9 @@ export const BannerInfo = styled.div`
   }
 `;
 
-export const BannerImage = styled.img`
-  width: 646px;
-  height: 333px;
-  object-fit: cover;
+export const BannerVideo = styled.div`
+  width: 640px;
+  height: 360px;
   border-radius: 8px;
   box-shadow: 0px 0px 0.75rem 0.25rem ${({ $color }) => $color};
 `;
