@@ -6,10 +6,6 @@ import Categoria from "../../component/Categoria";
 import { getVideos } from "../../service/api";
 import { HomeContainer, MainContainer } from "./styled";
 
-const COLORS = ["#6bd1ff", "#ff6b6b", "#ffda6b", "#6bff8e", "#6b7aff"];
-
-const getColorByIndex = (index) => COLORS[index % COLORS.length];
-
 const Home = () => {
   const [categories, setCategories] = useState({});
 
@@ -46,7 +42,6 @@ const Home = () => {
               categoria={category}
               videos={videos}
               refetch={fetchVideos}
-              color={getColorByIndex(index)}
             />
           );
         })}

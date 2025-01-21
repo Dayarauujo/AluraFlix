@@ -1,7 +1,7 @@
 import React from "react";
 import { InputContainer } from "./styled";
 
-function Input({ id, title, type, defaultValue, selectValues }) {
+function Input({ id, title, type, defaultValue = "", selectValues }) {
   const getInput = () => {
     if (type === "area") {
       return (
@@ -9,12 +9,16 @@ function Input({ id, title, type, defaultValue, selectValues }) {
       );
     } else if (type === "select") {
       return (
-        <select id={id} name={id} required>
-          <option disabled selected value>
+        <select id={id} name={id} required defaultValue={defaultValue}>
+          <option disabled value="">
             -- Selecione uma opção --
           </option>
           {selectValues.map((value) => {
-            return <option value={value}>{value}</option>;
+            return (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            );
           })}
         </select>
       );

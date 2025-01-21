@@ -2,9 +2,15 @@ import React from "react";
 import VideoCard from "../VideoCards";
 import { CategoriaContainer, VideosContainer } from "./styled";
 
-const Categoria = ({ categoria, videos, refetch, color }) => {
+const COLORS = {
+  frontend: "#6bd1ff",
+  backend: "#00C86F",
+  mobile: "#FFBA05",
+};
+
+const Categoria = ({ categoria, videos, refetch }) => {
   return (
-    <CategoriaContainer $color={color}>
+    <CategoriaContainer $color={COLORS[categoria.toLowerCase()]}>
       <h2>{categoria}</h2>
       <VideosContainer>
         {videos.map((video) => (
@@ -12,7 +18,7 @@ const Categoria = ({ categoria, videos, refetch, color }) => {
             key={video.id}
             video={video}
             refetch={refetch}
-            color={color}
+            color={COLORS[categoria.toLowerCase()]}
           />
         ))}
       </VideosContainer>

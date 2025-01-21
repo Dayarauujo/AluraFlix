@@ -3,8 +3,11 @@ import { toast } from "react-toastify";
 import { saveVideo } from "../../service/api";
 import Input from "../Input";
 import { Button, NewVideoContainer } from "./styled";
+import { useRef } from "react";
 
 function NewVideoForm() {
+  const formRef = useRef(null);
+
   const handleOnCreate = async (event) => {
     try {
       event.preventDefault();
@@ -19,9 +22,8 @@ function NewVideoForm() {
     }
   };
 
-  const cleanForm = (event) => {
-    event.preventDefault();
-    event.target.reset();
+  const cleanForm = () => {
+    formRef.current.reset();
   };
 
   return (
@@ -29,7 +31,7 @@ function NewVideoForm() {
       <h1>Novo Vídeo</h1>
       <h2>Complete o formulário para criar um novo card de vídeo.</h2>
 
-      <form onSubmit={handleOnCreate}>
+      <form onSubmit={handleOnCreate} ref={formRef}>
         <h3>Criar Card</h3>
 
         <div>
@@ -49,7 +51,9 @@ function NewVideoForm() {
           <Button $isSpecial type="submit">
             Guardar
           </Button>
-          <Button onClick={cleanForm}>Limpar</Button>
+          <Button onClick={cleanForm} type="button">
+            Limpar
+          </Button>
         </div>
       </form>
     </NewVideoContainer>

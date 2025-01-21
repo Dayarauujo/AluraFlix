@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 
 import { editVideo } from "../../service/api";
@@ -6,25 +7,70 @@ import { Button, CloseContainer, EditVideoContainer } from "./styled";
 import { FiX } from "react-icons/fi";
 
 function EditVideo({ closeModal, video }) {
-  const handleOnCreate = async (event) => {
-    try {
-      event.preventDefault();
-      const body = Object.fromEntries(new FormData(event.target));
+  const [editedVideo, setEditedVideo] = useState(video);
 
-      await editVideo(video.id, body);
+  const handleOnCreate = useCallback(
+    async (event) => {
+      try {
+        event.preventDefault();
+        const body = Object.fromEntries(new FormData(event.target));
 
-      toast.success("Vídeo editado com sucesso!");
-      event.target.reset();
-      closeModal();
-    } catch (error) {
-      toast.error("Erro ao editar vídeo");
-    }
+        await editVideo(video.id, body);
+
+        toast.success("Vídeo editado com sucesso!");
+        event.target.reset();
+        closeModal();
+      } catch (error) {
+        toast.error("Erro ao editar vídeo");
+      }
+    },
+    [closeModal, video.id]
+  );
+
+  const cleanForm = () => {
+    setEditedVideo({
+      id: "",
+      title: "",
+      category: "",
+      image: "",
+      video: "",
+      description: "",
+    });
   };
 
-  const cleanForm = (event) => {
-    event.preventDefault();
-    event.target.reset();
-  };
+  const Form = useCallback(() => {
+    return (
+      <form onSubmit={handleOnCreate}>
+        <div>
+          <Input title="Título" id="title" defaultValue={editedVideo.title} />
+          <Input
+            title="Categoria"
+            id="category"
+            defaultValue={editedVideo.category}
+            type="select"
+            selectValues={["Backend", "Frontend", "Mobile"]}
+          />
+          <Input title="Imagem" id="image" defaultValue={editedVideo.image} />
+          <Input title="Vídeo" id="video" defaultValue={editedVideo.video} />
+          <Input
+            title="Descrição"
+            id="description"
+            type="area"
+            defaultValue={editedVideo.description}
+          />
+        </div>
+
+        <div>
+          <Button $isSpecial type="submit">
+            Guardar
+          </Button>
+          <Button onClick={cleanForm} type="button">
+            Limpar
+          </Button>
+        </div>
+      </form>
+    );
+  }, [editedVideo, handleOnCreate]);
 
   return (
     <EditVideoContainer>
@@ -33,33 +79,7 @@ function EditVideo({ closeModal, video }) {
       </CloseContainer>
       <h1>EDITAR CARD:</h1>
 
-      <form onSubmit={handleOnCreate}>
-        <div>
-          <Input title="Título" id="title" defaultValue={video.title} />
-          <Input
-            title="Categoria"
-            id="category"
-            defaultValue={video.category}
-            type="select"
-            selectValues={["Backend", "Frontend", "Mobile"]}
-          />
-          <Input title="Imagem" id="image" defaultValue={video.image} />
-          <Input title="Vídeo" id="video" defaultValue={video.video} />
-          <Input
-            title="Descrição"
-            id="description"
-            type="area"
-            defaultValue={video.description}
-          />
-        </div>
-
-        <div>
-          <Button $isSpecial type="submit">
-            Guardar
-          </Button>
-          <Button onClick={cleanForm}>Limpar</Button>
-        </div>
-      </form>
+      <Form />
     </EditVideoContainer>
   );
 }

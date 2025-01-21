@@ -6,7 +6,7 @@ export const BannerContainer = styled.div`
   gap: 50px;
   padding: 230px 40px 100px 40px;
   position: relative;
-  box-shadow: 0px 0px 1rem 0.25rem #2271d1 inset;
+  box-shadow: 0px 0px 1rem 0.25rem ${({ $color }) => $color} inset;
 
   @media (max-width: 1000px) {
     grid-template-columns: repeat(1, 1fr);
@@ -27,7 +27,7 @@ export const BannerInfo = styled.div`
   color: #f5f5f5;
 
   span {
-    background-color: #6bd1ff;
+    background-color: ${({ $color }) => $color};
     border-radius: 12px;
     display: inline-block;
   }
@@ -68,5 +68,5 @@ export const BannerImage = styled.img`
   height: 333px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0px 0px 0.75rem 0.25rem #2271d1;
+  box-shadow: 0px 0px 0.75rem 0.25rem ${({ $color }) => $color};
 `;
